@@ -1,0 +1,151 @@
+<html>
+<head>
+  <script>
+  function validateForm() {
+
+     // Validate Sku no empty
+     var skuNumber = document.forms["myForm"]["custevent_sku_number"].value;
+     if (skuNumber.length == 0) {
+         alert("Sku Number must be filled out");
+         document.myForm.custevent_sku_number.focus();
+         return false;
+     }
+
+      // Validate Quantity is a number and more than 0
+      var quantity = document.forms["myForm"]["custevent_quantity"].value;
+      if (isNaN(quantity) || quantity < 1) {
+          alert("Quantity field must be filled out with a real quantity number");
+          document.myForm.custevent_quantity.focus();
+          return false;
+      }
+
+      // First, Last Name filled with alphabetic character
+      var firstName = document.forms["myForm"]["firstname"].value;
+      var nameFormat = /^[A-Za-z]+$/;
+      if (!firstName.match(nameFormat)) {
+          alert("First Name field must be filled out correctly");
+          document.myForm.firstname.focus();
+          return false;
+      }
+      var lastName = document.forms["myForm"]["lastname"].value;
+      if (!lastName.match(nameFormat)) {
+          alert("Last Name field must be filled out correctly");
+          document.myForm.lastname.focus();
+          return false;
+      }
+
+      var email = document.forms["myForm"]["email"].value;
+      var emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!emailFormat.test(email)) {
+          alert("Please enter a valid email address");
+          document.myForm.email.focus();
+          return false;
+      }
+
+      // Phone number can't contain letters, only blank space, '.' and '-' are allowed
+      var phone = document.forms["myForm"]["phone"].value;
+      var phoneFormat = /[0-9]{3}[ .-][0-9]{3}[ -][0-9]{4}/;
+      if (!phone.match(phoneFormat)) {
+          alert("Please enter a valid phone number: ###-###-####");
+          document.myForm.phone.focus();
+          return false;
+      }
+
+      // Valid Zip Code format
+      var zipcode = document.forms["myForm"]["zipcode"].value;
+      var zipCodeFormat = /^[0-9]+$/;
+      if (!zipcode.match(zipCodeFormat)) {
+          alert("Please enter a valid zip code");
+          document.myForm.zipcode.focus();
+          return false;
+      }
+
+
+
+  }
+
+  </script>
+
+</head>
+<body>
+  <b>Please fill out the request for quote form below:<b>
+
+  <div class="netsuitecontactusform">
+    <form name="myForm" id="myform" action="" onsubmit="return validateForm()" method="post">
+      <input type="hidden" name="profile" value="2">
+      <input type="hidden" name="title" value="CCS Quote">
+
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Sku Number</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="custevent_sku_number">
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Quantity</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="custevent_quantity" >
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>First Name</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="firstname" >
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Last Name</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="lastname" >
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Email</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="email" >
+        </div>
+      </div>
+
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Company Name</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="companyname">
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Phone Number</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="phone">
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Zip Code</span></label>
+        <div class="control">
+          <input class="input-text" type="text" name="zipcode">
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <label class="label"><span>Message</span></label>
+        <div class="control">
+          <textarea class="input-text" type="text" name="incomingmessage"></textarea>
+        </div>
+      </div>
+
+      <div class="field netsuiteformspace">
+        <input type="submit" style="" value="Submit" id="submitter" name="submitter">
+      </div>
+    </form>
+  </div>
+</b>
+</b>
+</body>
+</html>
